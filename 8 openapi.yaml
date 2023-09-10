@@ -1,0 +1,393 @@
+openapi: 3.0.0
+info:
+  title: Clever House app
+  version: 0.0.1
+
+servers:
+- url: http://localhost:8080/api/v1
+  description: VC server
+
+paths: 
+  /devices:
+    get:
+      summary: Получение списка подключенных устройств
+      tags: 
+        - Alldevices
+      operationId: getAllDevices
+      responses:
+        '200':
+          description: Успешный ответ со списком устройств
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Devices'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        
+    post:
+      summary: Метод добавления устройства
+      tags:
+        - Add_device
+      operationId: addNewDevice
+      requestBody:
+        required: true
+        content:
+          adplication/json:
+            schema:
+              $ref: '#/components/schemas/Errors'
+      responses:
+        '200':
+          description: Устройство успешно добавлено!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+    delete:
+      summary: Удаление устройства
+      tags:
+        - Delete_device
+      operationId: deleteDevice
+      responses:
+        '200':
+          description: Успешное удаление устройства
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+  /users:
+    get:
+      summary: Метод получения пользователей
+      tags:
+        - Users
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: Успешный запрос списка пользователей
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+    post:
+      summary: Метод создания пользователя
+      tags:
+        - NewUser
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          adplication/json:
+            schema:
+              $ref: '#/components/schemas/Errors'
+      responses:
+        '200':
+          description: 'Успешное создание пользователя'
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+    delete:
+      summary: Метод удаления пользователя
+      tags:
+        - deleteUser
+      operationId: deleteUser
+      responses:
+        '200':
+          description: Успешное удаление пользователя
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Неверный запрос
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Нет доступа!
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Не найдено
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Ошибка сервера
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '502':
+          description: Ошибка шлюза
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        default:
+          description: Other info
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+
+components:
+  schemas:
+    Device:
+      type: object
+      required:
+        - id
+        - model
+        - SWversion
+        - ipAddress
+        - status
+      properties:
+        wetClean:
+          type: boolean
+        fastMode:
+          type: boolean
+        doubleWash:
+          type: boolean
+        filterState:
+          type: integer
+        idUser:
+          type: integer
+        info:
+          type: string
+    Devices:
+      type: array
+      items:
+        $ref: '#/components/schemas/Device'
+      example:
+        - id: 1
+          model: cp2050
+          SWversion: 1.0.1.2
+          ipAddress: 128.20.50.21
+          status: online
+        - id: 2
+          model: cf303
+          SWversion: 1.1.2.2
+          ipAddress: 128.2.2.22
+          status: offline
+    User:
+      type: object
+      required:
+        - id
+        - login
+        - hash
+        - email
+        - phone
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+      example:
+        - id: 1
+          login: user1
+          hash: 8sdf435re35t58
+          email: user1@mail.ru
+          phone: +79138889999
+        - id: 2
+          login: user2
+          hash: 4hf234hf32r23f
+          email: user2@mail.ru
+          phone: +79139998888
+    Errors:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+          
+        
+      
+                
+                
+                
